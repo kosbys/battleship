@@ -11,6 +11,8 @@ The classic game in your browser
 
 # :blue_book: Get started
 
+#### Make sure you have  <a href="https://nodejs.org/en/"> Node.js</a> installed
+
 ```bash
 git clone git@github.com:kosbys/battleship.git
 cd vite-template
