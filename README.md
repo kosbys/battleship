@@ -1,5 +1,5 @@
 <p display="flex" gap="100px" align="center">
-<img width="100px" src="https://vitejs.dev/logo-with-shadow.png" />
+<img width="100px" src="https://svgur.com/i/j8R.svg" />
  <img width="100px"  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg" />
  <img width="100px"  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" />
   <img width="100px"  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/eslint/eslint-original.svg" />
