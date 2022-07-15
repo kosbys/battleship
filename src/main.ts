@@ -1,7 +1,3 @@
 import "./index.css";
-
-document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
-  <div>
-    <h1 class="text-xl text-center">Vite + TypeScript</h1>
-  </div>
-`;
+import Gameboard from "./modules/gameboard";
+import Ship from "./modules/ship";
