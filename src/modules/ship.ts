@@ -20,29 +20,38 @@ export default class Ship {
     this.hits += 1;
   }
 
-  setCoordinates(start: Point) {
-    if (this.isVertical) {
-      const maxCoords = start.y + this.length;
-
-      if (maxCoords > 9) {
-        return;
-      }
-
-      // Range object from 0 to ship length
-      [...Array(this.length).keys()].forEach((i) =>
-        this.coordinates.push({ x: start.x, y: start.y + i })
-      );
-    } else {
-      const maxCoords = start.x + this.length;
-
-      if (maxCoords > 9) {
-        return;
-      }
-
-      [...Array(this.length).keys()].forEach((i) =>
-        this.coordinates.push({ x: start.x + i, y: start.y })
-      );
+  createCoordinatesVertical(start: Point): boolean {
+    if (start.y + this.length > 9) {
+      return false;
     }
+    const shipLengthRange = [...Array(this.length).keys()];
+
+    shipLengthRange.forEach((point) =>
+      this.coordinates.push({ x: start.x, y: start.y + point })
+    );
+
+    return true;
+  }
+
+  createCoordinatesHorizontal(start: Point): boolean {
+    if (start.x + this.length > 9) {
+      return false;
+    }
+    const shipLengthRange = [...Array(this.length).keys()];
+
+    shipLengthRange.forEach((point) =>
+      this.coordinates.push({ x: start.x + point, y: start.y })
+    );
+
+    return true;
+  }
+
+  setCoordinates(start: Point): boolean {
+    if (this.isVertical) {
+      return this.createCoordinatesVertical(start);
+    }
+
+    return this.createCoordinatesHorizontal(start);
   }
 
   isSunk() {

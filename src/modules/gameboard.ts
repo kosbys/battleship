@@ -2,13 +2,13 @@ import Ship from "./ship";
 import { equalPoints, Point } from "./helpers";
 
 export default class Gameboard {
-  readonly GRID_SIZE: number = 10;
+  static readonly GRID_SIZE: number = 10;
 
-  readonly EMPTY_CELL = 0;
+  static readonly EMPTY_CELL = 0;
 
-  readonly SHIP_CELL = 1;
+  static readonly SHIP_CELL = 1;
 
-  readonly HIT_CELL = 2;
+  static readonly HIT_CELL = 2;
 
   grid: number[][]; // (Y, X)
 
@@ -18,9 +18,9 @@ export default class Gameboard {
 
   constructor() {
     // 10x10 grid of zeroes
-    this.grid = Array(this.GRID_SIZE)
+    this.grid = Array(Gameboard.GRID_SIZE)
       .fill(0)
-      .map(() => Array(this.GRID_SIZE).fill(this.EMPTY_CELL));
+      .map(() => Array(Gameboard.GRID_SIZE).fill(Gameboard.EMPTY_CELL));
 
     this.sunk = 0;
 
@@ -29,30 +29,34 @@ export default class Gameboard {
 
   addShipToGrid(ship: Ship) {
     ship.coordinates.forEach((point) => {
-      this.grid[point.y][point.x] = this.SHIP_CELL;
+      this.grid[point.y][point.x] = Gameboard.SHIP_CELL;
     });
   }
 
-  addShip(ship: Ship, coordinates: Point) {
+  checkOverlap(coordinates: Point[]): boolean {
+    // Deep search to see if new ship coordinates overlaps with any existing ships' coordinates
+    return this.ships.some((vessel) =>
+      vessel.coordinates.some((a) => coordinates.some((b) => equalPoints(a, b)))
+    );
+  }
+
+  addShip(ship: Ship, coordinates: Point): boolean {
     ship.setCoordinates(coordinates);
 
-    // Deep search to see if new ship coordinates overlaps with existing ships
-    const duplicate = this.ships.some((vessel) =>
-      vessel.coordinates.some((a) =>
-        ship.coordinates.some((b) => equalPoints(a, b))
-      )
-    );
+    const duplicate = this.checkOverlap(ship.coordinates);
 
     if (duplicate) {
-      return;
+      return false;
     }
 
     this.ships.push(ship);
     this.addShipToGrid(ship);
+
+    return true;
   }
 
   receiveAttack(coordinates: Point) {
-    this.grid[coordinates.y][coordinates.x] = this.HIT_CELL;
+    this.grid[coordinates.y][coordinates.x] = Gameboard.HIT_CELL;
 
     // Check if cell is populated by a ship
     const shipHit = this.ships.find((ship) =>
