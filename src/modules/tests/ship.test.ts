@@ -13,6 +13,12 @@ test('Rejects invalid coordinates', () => {
   expect(ship.setCoordinates({ x: 10, y: 10 })).toBe(false);
 });
 
+test('Rejects invalid vertical coordinates', () => {
+  const ship = new Ship(2, true);
+  ship.setCoordinates({ x: 10, y: 10 });
+  expect(ship.setCoordinates({ x: 10, y: 10 })).toBe(false);
+});
+
 test('Ship logs correct coordinates', () => {
   const ship = new Ship(2);
   ship.setCoordinates({ x: 0, y: 0 });

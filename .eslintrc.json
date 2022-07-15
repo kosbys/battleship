@@ -13,7 +13,9 @@
   },
   "rules": {
     "import/no-unresolved": "error",
-    "no-constant-condition": "off"
+    "no-constant-condition": "off",
+    "no-param-reassign": "off",
+    "no-plusplus": "off"
   },
   "plugins": ["@typescript-eslint", "import"],
   "settings": {

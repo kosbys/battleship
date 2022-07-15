@@ -22,5 +22,19 @@ function equalPoints(a: Point, b: Point): boolean {
   return a.x === b.x && a.y === b.y;
 }
 
+/**
+ * Replaced by fullCoordinatesFunctional() from player.ts
+ *
+ *function fullCoordinates(): Point[] {
+ * const x = [];
+ * for (let i = 0; i < 10; i += 1) {
+ *   for (let j = 0; j < 10; j += 1) {
+ *     x.push({ x: j, y: i });
+ *   }
+ * }
+ * return x;
+ *}
+ */
+
 export { equalPoints, trueOrFalse, randomCoords };
 export type { Point };

@@ -23,6 +23,17 @@ test('Rejects attacking same coordinates twice', () => {
   expect(player.attack({ x: 0, y: 0 }, enemy)).toBe(false);
 });
 
+test('100 random shots should wipe the board', () => {
+  const player = new Player('player', true);
+  const enemy = new Player('enemy');
+  [...Array(100)].forEach(() => {
+    player.attackRandom(enemy);
+    player.setTurn(true);
+  });
+
+  expect(enemy.coordsHit.length).toBe(100);
+});
+
 test('Reports loss', () => {
   const player = new Player('player', true);
   const enemy = new Player('enemy');
