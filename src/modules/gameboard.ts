@@ -1,5 +1,5 @@
-import Ship from "./ship";
-import { equalPoints, Point } from "./helpers";
+import Ship from './ship';
+import { equalPoints, Point } from './helpers';
 
 export default class Gameboard {
   static readonly GRID_SIZE: number = 10;
@@ -18,9 +18,11 @@ export default class Gameboard {
 
   constructor() {
     // 10x10 grid of zeroes
-    this.grid = Array(Gameboard.GRID_SIZE)
-      .fill(0)
-      .map(() => Array(Gameboard.GRID_SIZE).fill(Gameboard.EMPTY_CELL));
+    this.grid = Object.seal(
+      Array(Gameboard.GRID_SIZE)
+        .fill(0)
+        .map(() => Array(Gameboard.GRID_SIZE).fill(Gameboard.EMPTY_CELL))
+    );
 
     this.sunk = 0;
 
@@ -70,5 +72,9 @@ export default class Gameboard {
         this.sunk += 1;
       }
     }
+  }
+
+  allSunk(): boolean {
+    return this.ships.every((ship) => ship.isSunk());
   }
 }
