@@ -2,7 +2,6 @@
 <img width="100px" src="https://svgur.com/i/j8R.svg" />
  <img width="100px"  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg" />
  <img width="100px"  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" />
-  <img width="100px"  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/eslint/eslint-original.svg" />
 </p>
 
 <h1 align="center">
