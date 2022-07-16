@@ -7,6 +7,9 @@ module.exports = {
         ITCMachine: ['ITCMachine', 'sans-serif'],
       },
     },
+    gridTemplateRows: {
+      10: 'repeat(10, minmax(0, 1fr))',
+    },
   },
   plugins: [],
 };
