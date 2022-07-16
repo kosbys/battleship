@@ -1,5 +1,5 @@
 import Gameboard from './gameboard';
-import { Point, randomCoords, trueOrFalse, equalPoints } from './helpers';
+import { Point, randomCoords, trueOrFalse, equalPoints, choiceIndex } from './helpers';
 import Ship from './ship';
 
 export default class Player {
@@ -23,20 +23,6 @@ export default class Player {
 
   setTurn(turn: boolean) {
     this.isTurn = turn;
-  }
-
-  /**
-   * Shuffles the coordinates yet to be hit using the Durstenfeld shuffle to achieve randomness
-   * https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#The_modern_algorithm
-   */
-  shuffle(): void {
-    for (let i = this.coordsRemaining.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [this.coordsRemaining[i], this.coordsRemaining[j]] = [
-        this.coordsRemaining[j],
-        this.coordsRemaining[i],
-      ];
-    }
   }
 
   fullCoordinatesFunctional(): Point[] {
@@ -81,9 +67,8 @@ export default class Player {
   }
 
   attackRandom(player: Player) {
-    player.shuffle();
-    this.attack(player.coordsRemaining[player.coordsRemaining.length - 1], player);
-    player.coordsRemaining.pop();
+    const [randomPoint] = player.coordsRemaining.splice(choiceIndex(player.coordsRemaining), 1);
+    this.attack(randomPoint, player);
   }
 
   // Should be random

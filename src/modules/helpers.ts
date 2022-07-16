@@ -3,8 +3,12 @@ type Point = {
   y: number;
 };
 
-function randomInteger(max: number, min: number): number {
+function randomInteger(max: number, min: number = 0): number {
   return Math.floor(Math.random() * (max - min) + min);
+}
+
+function choiceIndex(choices: any[]): number {
+  return Math.floor(Math.random() * choices.length);
 }
 
 function trueOrFalse(): boolean {
@@ -36,5 +40,5 @@ function equalPoints(a: Point, b: Point): boolean {
  *}
  */
 
-export { equalPoints, trueOrFalse, randomCoords };
+export { equalPoints, trueOrFalse, randomCoords, choiceIndex };
 export type { Point };
