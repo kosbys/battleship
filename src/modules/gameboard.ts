@@ -36,9 +36,11 @@ export default class Gameboard {
   }
 
   checkOverlap(coordinates: Point[]): boolean {
-    // Deep search to see if new ship coordinates overlaps with any existing ships' coordinates
+    // Deep search to see if new ship coordinates overlaps with any existing ships' coordinates or comes within 1 tile of them
     return this.ships.some((vessel) =>
-      vessel.coordinates.some((a) => coordinates.some((b) => equalPoints(a, b)))
+      vessel.coordinates.some((a) =>
+        coordinates.some((b) => a.x - b.x === 1 || a.y - b.y === 1 || equalPoints(a, b))
+      )
     );
   }
 

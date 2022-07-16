@@ -18,6 +18,14 @@ test('Rejects invalid ship configuration', () => {
   expect(board.ships.length).toEqual(1);
 });
 
+test('Rejects invalid ship configuration when too close', () => {
+  const board = new Gameboard();
+  board.addShip(new Ship(4), { x: 0, y: 0 });
+  board.addShip(new Ship(2), { x: 1, y: 1 });
+
+  expect(board.ships.length).toEqual(1);
+});
+
 test('Receives attack at correct coords', () => {
   const board = new Gameboard();
   board.receiveAttack({ x: 0, y: 0 });
