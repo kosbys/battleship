@@ -6,3 +6,9 @@
   font-family: 'ITCMachine';
   src: url('./fonts/ITCMachine.otf');
 }
+
+@layer utilities {
+  .split-half {
+    clip-path: polygon(60% 0, 38% 100%, 0 100%, 0 50%, 0 1%);
+  }
+}
