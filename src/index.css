@@ -9,6 +9,6 @@
 
 @layer utilities {
   .split-half {
-    clip-path: polygon(60% 0, 38% 100%, 0 100%, 0 50%, 0 1%);
+    clip-path: polygon(83% 0, 53% 100%, 0% 100%, 0 52%, 0% 0%);
   }
 }

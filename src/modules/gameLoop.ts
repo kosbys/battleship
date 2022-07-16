@@ -1,4 +1,5 @@
 import Player from './player';
+import shipGrid from './domHandlers';
 
 export default class GameLoop {
   players: Player[];
@@ -9,12 +10,14 @@ export default class GameLoop {
 
   createPlayer(name: string) {
     const player = new Player(name, true);
+    shipGrid('player');
     player.placeFleet();
     this.players.push(player);
   }
 
   createPlayerAI() {
     const player = new Player('AI_PLAYER');
+    shipGrid('enemy');
     player.placeFleet();
     this.players.push(player);
   }

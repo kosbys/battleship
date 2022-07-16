@@ -1,5 +1,7 @@
 import './index.css';
-import gameLoop from './modules/gameLoop';
-import shipGrid from './modules/domHandlers';
+import GameLoop from './modules/gameLoop';
 
-shipGrid('player');
+const battleship = new GameLoop();
+
+battleship.createPlayer('me');
+battleship.createPlayerAI();
