@@ -1,2 +1,2 @@
 import './index.css';
-import Player from './modules/player';
+import gameLoop from './modules/gameLoop';
