@@ -18,15 +18,14 @@ export default class Player {
     this.board = new Gameboard();
     this.isTurn = isTurn;
     this.coordsHit = [];
-    this.coordsRemaining = this.fullCoordinatesFunctional();
+    this.coordsRemaining = this.fullCoordinates();
   }
 
   setTurn(turn: boolean) {
     this.isTurn = turn;
   }
 
-  fullCoordinatesFunctional(): Point[] {
-    // Maybe too complex compared to fullCoordinates()
+  fullCoordinates(): Point[] {
     const coords = this.board.grid.map((row, i) =>
       row.map((_, j) => {
         const point = { x: j, y: i };

@@ -3,6 +3,22 @@ type Point = {
   y: number;
 };
 
+function secretPoi() {
+  let input = '';
+  const poiString = 'poi';
+  const poi = new Audio('./src/audio/poi.ogg');
+  document.addEventListener('keydown', (e) => {
+    input += e.key;
+    if (input === poiString) {
+      poi.play();
+    }
+    if (!poiString.indexOf(input)) {
+      return;
+    }
+    input = `${e.key}`;
+  });
+}
+
 function randomInteger(max: number, min: number = 0): number {
   return Math.floor(Math.random() * (max - min) + min);
 }
@@ -26,19 +42,5 @@ function equalPoints(a: Point, b: Point): boolean {
   return a.x === b.x && a.y === b.y;
 }
 
-/**
- * Replaced by fullCoordinatesFunctional() from player.ts
- *
- *function fullCoordinates(): Point[] {
- * const x = [];
- * for (let i = 0; i < 10; i += 1) {
- *   for (let j = 0; j < 10; j += 1) {
- *     x.push({ x: j, y: i });
- *   }
- * }
- * return x;
- *}
- */
-
-export { equalPoints, trueOrFalse, randomCoords, choiceIndex };
+export { equalPoints, trueOrFalse, randomCoords, choiceIndex, secretPoi };
 export type { Point };

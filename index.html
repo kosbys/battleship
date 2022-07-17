@@ -9,16 +9,17 @@
 </head>
 
 <body class="bg-slate-50 dark:bg-neutral-800">
-  <div id="app" class="">
+  <div id="app" class="flex flex-col">
     <header
       class="flex justify-start mb-5 border-b-4 border-blue-900 split-half dark:border-sky-400 rounded-xl bg-sky-400 dark:bg-blue-900">
       <img src="./src/images/cannon.png" class="w-20 mx-3 mr sm:w-20 md:w-32 lg:w-44 aspect-auto" alt="cannon" />
       <span
         class="mt-12 text-4xl tracking-wide text-black md:text-6xl lg:text-8xl lg:mt-4 dark:text-gray-200 font-ITCMachine">BATTLESHIP</span>
     </header>
+    <div class="message"></div>
     <main class="flex flex-col items-center gap-10 mt-12 lg:flex-row lg:justify-evenly">
-      <div id="player-ships" class="grid w-3/4 grid-cols-10 bg-white lg:w-1/3 grid-rows-10"></div>
-      <div id="enemy-ships" class="grid w-3/4 grid-cols-10 bg-white lg:w-1/3 grid-rows-10"></div>
+      <div id="player-ships" class="grid grid-cols-10 w-fit grid-rows-10"></div>
+      <div id="enemy-ships" class="grid grid-cols-10 w-fit grid-rows-10"></div>
     </main>
   </div>
   <script type="module" src="/src/main.ts"></script>
