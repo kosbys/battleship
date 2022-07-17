@@ -9,6 +9,6 @@ const battleship = new GameLoop();
 battleship.createPlayer('me');
 battleship.createPlayerAI();
 
-console.log(battleship.players.computer);
+console.log(battleship);
 
 // TODO: Add documentation

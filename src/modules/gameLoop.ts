@@ -21,13 +21,13 @@ export default class GameLoop {
     this.players.human = player;
   }
 
-  paintCell(coords: HTMLDivElement, point: Point) {
-    if (this.players.computer.board.grid[point.y][point.x] === Gameboard.EMPTY_CELL) {
-      coords.style.backgroundColor = '#99d98c';
-    }
-    if (this.players.computer.board.grid[point.y][point.x] === Gameboard.SHIP_CELL) {
-      coords.style.backgroundColor = '#d90429';
-    }
+  enemyAttack() {
+    const randomAttack = this.players.computer.attackRandom(this.players.human);
+    const allyGrid = document.getElementById('player-ships');
+    const cell = allyGrid?.querySelector(
+      `[id='${randomAttack.y}${randomAttack.x}']`
+    ) as HTMLDivElement;
+    GameLoop.paintCell(cell, randomAttack, this.players.human);
   }
 
   createEnemyTargets() {
@@ -36,7 +36,7 @@ export default class GameLoop {
       cell.addEventListener('click', (e: Event) => {
         const coords = e?.currentTarget as HTMLDivElement;
         const coordsPoint: Point = { y: +coords.id[0], x: +coords.id[1] };
-        this.paintCell(coords, coordsPoint);
+        GameLoop.paintCell(coords, coordsPoint, this.players.computer);
         this.players.human.attack(coordsPoint, this.players.computer);
       });
     });
@@ -65,6 +65,15 @@ export default class GameLoop {
         grid?.append(cell);
       });
     });
+  }
+
+  static paintCell(coords: HTMLDivElement, point: Point, player: Player) {
+    if (player.board.grid[point.y][point.x] === Gameboard.EMPTY_CELL) {
+      coords.style.backgroundColor = '#99d98c';
+    }
+    if (player.board.grid[point.y][point.x] === Gameboard.SHIP_CELL) {
+      coords.style.backgroundColor = '#d90429';
+    }
   }
 }
 // Should create one player and one AI player, prompt human for ship placements, set up a turn system

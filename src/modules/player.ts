@@ -72,6 +72,7 @@ export default class Player {
   attackRandom(player: Player) {
     const [randomPoint] = player.coordsRemaining.splice(choiceIndex(player.coordsRemaining), 1);
     this.attack(randomPoint, player);
+    return randomPoint;
   }
 
   placeFleet() {
