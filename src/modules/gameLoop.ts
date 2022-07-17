@@ -22,22 +22,30 @@ export default class GameLoop {
   }
 
   enemyAttack() {
-    const randomAttack = this.players.computer.attackRandom(this.players.human);
+    if (!this.players.computer.isTurn) {
+      return;
+    }
     const allyGrid = document.getElementById('player-ships');
-    const cell = allyGrid?.querySelector(
-      `[id='${randomAttack.y}${randomAttack.x}']`
+    const randomAttack = this.players.computer.attackRandom(this.players.human);
+    const coords = allyGrid?.querySelector(
+      `[id='${randomAttack.coords.y}${randomAttack.coords.x}']`
     ) as HTMLDivElement;
-    GameLoop.paintCell(cell, randomAttack, this.players.human);
+
+    GameLoop.paintCell(coords, randomAttack.before);
   }
 
   createEnemyTargets() {
     const enemyGrid = document.getElementById('enemy-ships');
     enemyGrid?.childNodes.forEach((cell) => {
       cell.addEventListener('click', (e: Event) => {
+        if (!this.players.human.isTurn) {
+          return;
+        }
         const coords = e?.currentTarget as HTMLDivElement;
         const coordsPoint: Point = { y: +coords.id[0], x: +coords.id[1] };
-        GameLoop.paintCell(coords, coordsPoint, this.players.computer);
+        const coordsState = this.players.computer.board.grid[coordsPoint.y][coordsPoint.x];
         this.players.human.attack(coordsPoint, this.players.computer);
+        GameLoop.paintCell(coords, coordsState);
       });
     });
   }
@@ -67,11 +75,11 @@ export default class GameLoop {
     });
   }
 
-  static paintCell(coords: HTMLDivElement, point: Point, player: Player) {
-    if (player.board.grid[point.y][point.x] === Gameboard.EMPTY_CELL) {
+  static paintCell(coords: HTMLDivElement, gridCoord: number) {
+    if (gridCoord === Gameboard.EMPTY_CELL) {
       coords.style.backgroundColor = '#99d98c';
     }
-    if (player.board.grid[point.y][point.x] === Gameboard.SHIP_CELL) {
+    if (gridCoord === Gameboard.SHIP_CELL) {
       coords.style.backgroundColor = '#d90429';
     }
   }

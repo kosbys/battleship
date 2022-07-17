@@ -71,8 +71,9 @@ export default class Player {
 
   attackRandom(player: Player) {
     const [randomPoint] = player.coordsRemaining.splice(choiceIndex(player.coordsRemaining), 1);
+    const pointBefore = player.board.grid[randomPoint.y][randomPoint.x];
     this.attack(randomPoint, player);
-    return randomPoint;
+    return { coords: randomPoint, before: pointBefore };
   }
 
   placeFleet() {
