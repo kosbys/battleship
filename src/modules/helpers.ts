@@ -6,7 +6,9 @@ type Point = {
 function secretPoi() {
   let input = '';
   const poiString = 'poi';
-  const poi = new Audio('./src/audio/poi.ogg');
+  const poi = new Audio(
+    'https://yksk.kancollewiki.net/w/images/6/62/Yuudachi_Equipment%281%29.ogg'
+  );
   document.addEventListener('keydown', (e) => {
     input += e.key;
     if (input === poiString) {
