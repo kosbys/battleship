@@ -1,5 +1,5 @@
 import Ship from './ship';
-import { equalPoints, Point } from './helpers';
+import { equalPoints, Point, randomCoordsShip } from './helpers';
 
 export default class Gameboard {
   static readonly GRID_SIZE: number = 10;
@@ -24,9 +24,9 @@ export default class Gameboard {
         .map(() => Array(Gameboard.GRID_SIZE).fill(Gameboard.EMPTY_CELL))
     );
 
-    this.sunk = 0;
-
     this.ships = [];
+
+    this.sunk = 0;
   }
 
   addShipToGrid(ship: Ship) {
@@ -38,10 +38,12 @@ export default class Gameboard {
   checkOverlap(coordinates: Point[]): boolean {
     // Deep search to see if new ship coordinates overlaps with any existing ships' coordinates or comes within 1 tile of them
     return this.ships.some((vessel) =>
-      vessel.coordinates.some((a) =>
-        coordinates.some((b) => a.x - b.x === 1 || a.y - b.y === 1 || equalPoints(a, b))
-      )
+      vessel.coordinates.some((a) => coordinates.some((b) => equalPoints(a, b)))
     );
+  }
+
+  addShipRandom(ship: Ship) {
+    this.addShip(ship, randomCoordsShip(ship.length, ship.isVertical));
   }
 
   addShip(ship: Ship, coordinates: Point): boolean {

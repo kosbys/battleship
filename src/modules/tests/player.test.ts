@@ -5,6 +5,7 @@ import Ship from '../ship';
 test('Random fleet placement', () => {
   const player = new Player('player');
   player.placeFleet();
+
   expect(player.board.ships.length).toBe(5);
 });
 

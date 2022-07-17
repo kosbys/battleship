@@ -1,5 +1,5 @@
 import Gameboard from './gameboard';
-import { Point, randomCoords, trueOrFalse, equalPoints, choiceIndex } from './helpers';
+import { Point, trueOrFalse, equalPoints, choiceIndex, choice } from './helpers';
 import Ship from './ship';
 
 export default class Player {
@@ -15,9 +15,13 @@ export default class Player {
 
   constructor(name: string, isTurn: boolean = false) {
     this.name = name;
+
     this.board = new Gameboard();
+
     this.isTurn = isTurn;
+
     this.coordsHit = [];
+
     this.coordsRemaining = this.fullCoordinates();
   }
 
@@ -70,15 +74,10 @@ export default class Player {
     this.attack(randomPoint, player);
   }
 
-  // Should be random
   placeFleet() {
     const shipSizes = [5, 4, 3, 3, 2];
-    shipSizes.forEach((size) => {
-      while (true) {
-        if (this.board.addShip(new Ship(size, trueOrFalse()), randomCoords())) {
-          break;
-        }
-      }
-    });
+    while (this.board.ships.length < 5) {
+      this.board.addShipRandom(new Ship(choice(shipSizes), trueOrFalse()));
+    }
   }
 }
