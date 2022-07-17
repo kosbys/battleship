@@ -19,7 +19,7 @@ export default class GameLoop {
   createPlayer(name: string) {
     const player = new Player(name, true);
     this.players.human = player;
-    // Should prompt for ships
+    // Maybe add manual placement
     player.placeFleet();
     this.shipGrid('player');
   }

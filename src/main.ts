@@ -7,5 +7,3 @@ secretPoi();
 const battleship = new GameLoop();
 
 battleship.beginGame();
-
-// TODO: Add documentation
