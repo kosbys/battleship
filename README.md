@@ -4,6 +4,8 @@
  <img width="100px"  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" />
 </p>
 
+## LIVE DEMO https://kosbys.github.io/battleship/
+
 <h1 align="center">
  BATTLESHIP </h1>
 The classic game in your browser
