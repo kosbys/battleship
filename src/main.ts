@@ -6,9 +6,6 @@ secretPoi();
 
 const battleship = new GameLoop();
 
-battleship.createPlayer('me');
-battleship.createPlayerAI();
-
-console.log(battleship);
+battleship.beginGame();
 
 // TODO: Add documentation

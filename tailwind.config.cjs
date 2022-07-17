@@ -4,7 +4,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        ITCMachine: ['ITCMachine', 'sans-serif'],
+        ITCMachine: ['ITCMachine', 'display'],
+        roboto: ['Roboto', 'sans-serif'],
       },
     },
     gridTemplateRows: {
