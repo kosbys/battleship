@@ -6,13 +6,10 @@ type Point = {
 function secretPoi() {
   let input = '';
   const poiString = 'poi';
-  const poi = new Audio(
-    'https://yksk.kancollewiki.net/w/images/6/62/Yuudachi_Equipment%281%29.ogg'
-  );
   document.addEventListener('keydown', (e) => {
     input += e.key;
     if (input === poiString) {
-      poi.play();
+      window.location.replace('https://www.youtube.com/watch?v=a5_Pc1ZK7aw');
     }
     if (!poiString.indexOf(input)) {
       return;
